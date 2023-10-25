@@ -6,9 +6,8 @@ function eject(config) {
   if (!pathDestination)
     throw new Error("Error: pathDestination needed to process");
 
-  convertToSchema(pathSource, pathDestination)
-    .then(process.exit(0))
-    .catch(() => process.exit(1));
+  convertToSchema(pathSource, pathDestination);
+  process.exit(0);
 }
 
 module.exports = { eject };
