@@ -1,0 +1,75 @@
+{
+  "name": "json-to-schema-swagger",
+  "version": "1.0.0",
+  "description": "Convert object json to schema swagger json",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "swagger"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pargon/json-to-schema-swagger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pargon/json-to-schema-swagger/issues"
+  },
+  "homepage": "https://github.com/pargon/json-to-schema-swagger#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.5.1",
+    "mocked-env": "^1.3.5",
+    "prettier": "^2.8.8"
+  },
+  "eslintIgnore": [
+    "*.test.js"
+  ],
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "linebreak-style": 0,
+      "max-len": [
+        "error",
+        {
+          "ignoreComments": true,
+          "ignoreTrailingComments": true
+        }
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ]
+    }
+  }
+}
