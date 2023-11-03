@@ -9,14 +9,52 @@ module.exports = {
       id: 1,
       name: "Name",
       tags: [
-        { other: "value", other2: "value2" },
-        { other: "value3", other2: "value4" }
+        { key1: "value 1", key2: 999 },
+        { key1: "value 2", other2: 888 }
       ]
     }
   }
 };
 ```
-where `example` can be a json object with arrays or basic type
+where `example` can be a json object with arrays or basic type. The result is:
+```javascript
+module.exports = {
+  ClassName: {
+    description: "Class Name",
+    type: "object",
+    properties: {
+      id: {
+        type: "number",
+        description: "id",
+        example: 1
+      },
+      name: {
+        type: "string",
+        description: "name",
+        example: "Name"
+      },
+      tags: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            key1: {
+              type: "string",
+              description: "key1",
+              example: "value 1"
+            },
+            key2: {
+              type: "number",
+              description: "key2",
+              example: 999
+            }
+          }
+        }
+      }
+    }
+  }
+};
+```
 
 # Usage
 Create a js file to process and write:
