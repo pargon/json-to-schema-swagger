@@ -25,23 +25,26 @@ function convertToObject(examples) {
 function addPropToJSON(pathFile, pathOutput) {
   try {
     const data = fs.readFileSync(pathFile, "utf8");
-    const objetMatch = data.match(/module.exports\s*=\s*{([\s\S]*?)};/);
-    const objetText = objetMatch[1];
-    const objetClean = objetText.replace(/\s+/g, "");
-    const objetCom = `{${objetClean}}`.replace(/([{,])(\w+):/g, '$1"$2":');
-    const objetJSON = JSON.parse(objetCom);
-    const objetData = Object.values(objetJSON)[0];
+    const objectMatch = data.match(/module.exports\s*=\s*{([\s\S]*?)};/);
+    const objectText = objectMatch[1];
+    const objectClean = objectText.replace(
+      /(?![^"]*"[^"]*(?:"[^"]*"[^"]*)*$)\s+/g,
+      ""
+    );
+    const objectCom = `{${objectClean}}`.replace(/([{,])(\w+):/g, '$1"$2":');
+    const objectJSON = JSON.parse(objectCom);
+    const objectData = Object.values(objectJSON)[0];
 
-    if (objetData.example) {
-      if (Array.isArray(objetData.example)) {
-        objetData.type = "array";
-        objetData.items = { type: "object" };
-        objetData.items.properties = convertToObject(objetData.example[0]);
-      } else objetData.properties = convertToObject(objetData.example);
+    if (objectData.example) {
+      if (Array.isArray(objectData.example)) {
+        objectData.type = "array";
+        objectData.items = { type: "object" };
+        objectData.items.properties = convertToObject(objectData.example[0]);
+      } else objectData.properties = convertToObject(objectData.example);
 
-      delete objetData.example;
+      delete objectData.example;
       const objFinal = {};
-      objFinal[Object.keys(objetJSON)[0]] = objetData;
+      objFinal[Object.keys(objectJSON)[0]] = objectData;
 
       const newContent = `module.exports=${JSON.stringify(objFinal, null, 2)};`;
 
